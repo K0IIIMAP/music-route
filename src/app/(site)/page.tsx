@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import ListItem from "@/components/list-item";
-import { getSongs } from "../actions";
+import { getSongs, getUser } from "../actions";
 import { Song } from "@/lib/types";
 import PageContent from "@/components/page-content";
 

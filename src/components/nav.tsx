@@ -27,7 +27,7 @@ export default function Nav({ user }: { user: User | null }) {
           </Button>
 
           <Link href="/account" className="bg-white p-3 rounded-full">
-            <FaUserAlt />
+            <FaUserAlt className="text-black" />
           </Link>
         </div>
       ) : (

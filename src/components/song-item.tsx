@@ -1,14 +1,27 @@
+"use client";
 import { getImage } from "@/lib/helpers";
 import { Song } from "@/lib/types";
 import Image from "next/image";
 import React from "react";
 import PlayButton from "./play-button";
+import { cn } from "@/lib/utils";
 
-export default function SongItem({ song }: { song: Song }) {
+export default function SongItem({
+  song,
+  active,
+}: {
+  song: Song;
+  active: boolean;
+}) {
   const imagePath = getImage(song);
 
   return (
-    <div className="relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3 text-white w-[200px]">
+    <div
+      className={cn(
+        `relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3 text-white w-[200px]`,
+        active && "bg-neutral-400/10"
+      )}
+    >
       <div className="relative aspect-square w-full rounded-md overflow-hidden">
         <Image
           src={imagePath!}
@@ -24,7 +37,7 @@ export default function SongItem({ song }: { song: Song }) {
         </p>
       </div>
       <div className="absolute bottom-24 right-5">
-        <PlayButton />
+        <PlayButton active={active} />
       </div>
     </div>
   );

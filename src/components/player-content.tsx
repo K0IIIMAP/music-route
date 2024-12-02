@@ -30,11 +30,9 @@ export default function PlayerContent({
   const player = usePlayer();
   console.log(player.activeId);
 
-  const [volume, setVolume] = useState(1);
-
   const [playing, setIsPlaying] = useState(false);
 
-  const VolumeIcon = volume ? HiSpeakerWave : HiSpeakerXMark;
+  const VolumeIcon = player.volume ? HiSpeakerWave : HiSpeakerXMark;
   const Icon = playing ? BsPauseFill : BsPlayFill;
 
   const onPlayNext = () => {
@@ -58,7 +56,7 @@ export default function PlayerContent({
     player.setId(previousId);
   };
   const [play, { pause, sound }] = useSound(songUrl, {
-    volume: volume / 100,
+    volume: player.volume / 100,
     onplay: () => setIsPlaying(true),
     onend: () => {
       setIsPlaying(false);
@@ -87,10 +85,10 @@ export default function PlayerContent({
   };
 
   const toggleMute = () => {
-    if (volume === 0) {
-      setVolume(1);
+    if (player.volume === 0) {
+      player.setVolume(1);
     } else {
-      setVolume(0);
+      player.setVolume(0);
     }
   };
   return (
@@ -134,7 +132,7 @@ export default function PlayerContent({
             className="cursor-pointer"
             size={32}
           />
-          <SliderComponent volume={volume} setVolume={setVolume} />
+          <SliderComponent />
         </div>
       </div>
     </div>
