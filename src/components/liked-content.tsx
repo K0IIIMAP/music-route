@@ -1,9 +1,10 @@
 "use client";
 import { Song, User } from "@/lib/types";
 
-import React, { useEffect } from "react";
+import React from "react";
 import MediaItem from "./ui/media-item";
 import LikeButton from "./like-button";
+import useOnPlay from "@/lib/hooks/useOnPlay";
 
 export default function LikedContent({
   songs,
@@ -12,7 +13,14 @@ export default function LikedContent({
   songs: Song[] | undefined;
   user: User | null;
 }) {
-  if (!songs) return;
+  const onPlay = useOnPlay(songs || []);
+  if (!songs)
+    return (
+      <div className="px-10 max-md:text-center text-xl md:text-5xl">
+        No liked songs
+      </div>
+    );
+
   return (
     <>
       {songs?.length === 0 ? (
@@ -23,7 +31,7 @@ export default function LikedContent({
         <div className="flex flex-col gap-y-2 w-full p-6">
           {songs.map((song) => (
             <div key={song.id} className="flex items-center gap-x-4 w-full">
-              <div className="flex-1">
+              <div className="flex-1" onClick={() => onPlay(song.id)}>
                 <MediaItem song={song} />
               </div>
               <LikeButton songId={song.id} user={user} />

@@ -8,6 +8,8 @@ type PlayerStore = {
   reset: () => void;
   volume: number;
   setVolume: (volume: number) => void;
+  playing: boolean;
+  setIsPlaying: (isPlaying: boolean) => void;
 };
 
 export const usePlayer = create<PlayerStore>((set) => ({
@@ -18,4 +20,6 @@ export const usePlayer = create<PlayerStore>((set) => ({
   setId: (id: number) => set({ activeId: id }),
   setIds: (ids: number[]) => set({ ids: ids }),
   reset: () => set({ ids: [], activeId: undefined }),
+  playing: false,
+  setIsPlaying: (isPlaying: boolean) => set({ playing: isPlaying }),
 }));

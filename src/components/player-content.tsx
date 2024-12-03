@@ -1,6 +1,6 @@
 "use client";
 import { Song, User } from "@/lib/types";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MediaItem from "./ui/media-item";
 import LikeButton from "./like-button";
 import { BsPauseFill, BsPlayFill } from "react-icons/bs";
@@ -28,9 +28,9 @@ export default function PlayerContent({
     forAsync();
   }, []);
   const player = usePlayer();
-  console.log(player.activeId);
+  console.log(player.playing);
 
-  const [playing, setIsPlaying] = useState(false);
+  const { playing, setIsPlaying } = usePlayer(); // TODO mayber to get back to state
 
   const VolumeIcon = player.volume ? HiSpeakerWave : HiSpeakerXMark;
   const Icon = playing ? BsPauseFill : BsPlayFill;
@@ -55,7 +55,8 @@ export default function PlayerContent({
     }
     player.setId(previousId);
   };
-  const [play, { pause, sound }] = useSound(songUrl, {
+
+  const [, { sound }] = useSound(songUrl, {
     volume: player.volume / 100,
     onplay: () => setIsPlaying(true),
     onend: () => {

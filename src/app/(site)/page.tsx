@@ -1,11 +1,12 @@
 import Header from "@/components/header";
 import ListItem from "@/components/list-item";
 import { getSongs, getUser } from "../actions";
-import { Song } from "@/lib/types";
+
 import PageContent from "@/components/page-content";
 
 export default async function Home() {
   const songs = await getSongs();
+  const user = await getUser();
 
   return (
     <div className="bg-neutral-900 rounded-lg h-screen w-full overflow-hidden overflow-y-auto">
@@ -22,7 +23,7 @@ export default async function Home() {
           <h1 className="text-white text-2xl font-semibold">Newest songs</h1>
         </div>
         <div>
-          <PageContent songs={songs} />
+          <PageContent songs={songs} user={user} />
         </div>
       </div>
     </div>

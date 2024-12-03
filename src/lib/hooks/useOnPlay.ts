@@ -1,25 +1,22 @@
 "use client";
 
-import { toast } from "sonner";
-import { Song, User } from "../types";
+import { Song } from "../types";
 import { usePlayer } from "./usePlayer";
-import { useEffect, useState } from "react";
-import { getUser } from "@/app/actions";
 
 const useOnPlay = (songs: Song[]) => {
-  const [user, setUser] = useState<User | null>(null);
+  // const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    const forAsync = async () => {
-      const user = await getUser();
-      setUser(user);
-    };
-    forAsync();
-  }, []);
+  // useEffect(() => {
+  //   const forAsync = async () => {
+  //     const user = await getUser();
+  //     setUser(user);
+  //   };
+  //   forAsync();
+  // }, []); // for the faster loading user has to be passed from a
   const player = usePlayer();
 
   const onPlay = (id: number) => {
-    if (!user) return toast.error("You need to be logged in to play songs");
+    // if (!user) return toast.error("You need to be logged in to play songs");
 
     player.setId(id);
     player.setIds(songs.map((song) => song.id));

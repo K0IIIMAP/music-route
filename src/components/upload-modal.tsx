@@ -99,7 +99,7 @@ export default function UploadModal() {
                     {...register("title")}
                     required
                     minLength={3}
-                    maxLength={80}
+                    maxLength={30}
                   />
                 </div>
                 <div className="space-y-2">
@@ -109,7 +109,7 @@ export default function UploadModal() {
                     {...register("author")}
                     required
                     minLength={3}
-                    maxLength={80}
+                    maxLength={30}
                   />
                 </div>
                 <div className="space-y-2 mt-5">

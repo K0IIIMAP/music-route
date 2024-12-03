@@ -2,7 +2,7 @@ import Header from "@/components/header";
 import SearchContainer from "@/components/search-container";
 import SearchInput from "@/components/search-input";
 import React from "react";
-import { getSongsByTitle } from "../actions";
+import { getSongsByTitle, getUser } from "../actions";
 
 export default async function SearchPage({
   searchParams,
@@ -11,6 +11,8 @@ export default async function SearchPage({
 }) {
   const { title } = await searchParams;
   const songs = await getSongsByTitle(title);
+  const user = await getUser();
+
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header className="from-bg-neutral-900">
@@ -19,7 +21,7 @@ export default async function SearchPage({
           <SearchInput title={title} />
         </div>
       </Header>
-      <SearchContainer songs={songs} />
+      <SearchContainer songs={songs} user={user} />
     </div>
   );
 }

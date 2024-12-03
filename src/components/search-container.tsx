@@ -1,11 +1,19 @@
+"use client";
 import React from "react";
 import MediaItem from "./ui/media-item";
-import { Song } from "@/lib/types";
+import { Song, User } from "@/lib/types";
 import LikeButton from "./like-button";
-import { getUser } from "@/app/actions";
+import useOnPlay from "@/lib/hooks/useOnPlay";
+import { toast } from "sonner";
 
-export default async function SearchContainer({ songs }: { songs: Song[] }) {
-  const user = await getUser();
+export default function SearchContainer({
+  songs,
+  user,
+}: {
+  songs: Song[];
+  user: User | null;
+}) {
+  const onPlay = useOnPlay(songs || []);
   return (
     <>
       {songs.length === 0 ? (
@@ -16,7 +24,15 @@ export default async function SearchContainer({ songs }: { songs: Song[] }) {
         <div className="flex flex-col gap-y-2 w-full px-6">
           {songs.map((song) => (
             <div key={song.id} className="flex items-center gap-x-4 w-full">
-              <div className="flex-1">
+              <div
+                className="flex-1"
+                onClick={() => {
+                  if (!user) {
+                    return toast.error("Log in to play songs");
+                  }
+                  onPlay(song.id);
+                }}
+              >
                 <MediaItem song={song} />
               </div>
 
