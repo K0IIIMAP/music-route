@@ -24,8 +24,9 @@ export default function PageContent({
             key={song.id}
             onClick={() => {
               if (!user) {
-                return toast.error("You must be logged in to add songs", {
-                  className: "bg-red-400/15 border-red-500 text-white/80",
+                return toast.error("You must be logged in to play", {
+                  className:
+                    "bg-red-400/15 border-red-500 text-white/80 backdrop-blur-xl ",
                 });
               }
               onPlay(song.id);
