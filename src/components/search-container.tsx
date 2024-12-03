@@ -28,7 +28,9 @@ export default function SearchContainer({
                 className="flex-1"
                 onClick={() => {
                   if (!user) {
-                    return toast.error("Log in to play songs");
+                    return toast.error("You must be logged in to play songs", {
+                      className: "bg-red-400/15 border-red-500 text-white/80",
+                    });
                   }
                   onPlay(song.id);
                 }}

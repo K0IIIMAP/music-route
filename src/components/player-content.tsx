@@ -95,7 +95,7 @@ export default function PlayerContent({
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
       <div className="flex w-full justify-start">
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-4 z-10">
           <MediaItem song={song} />
           <LikeButton songId={song.id} user={user} />
         </div>

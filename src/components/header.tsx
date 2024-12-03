@@ -8,6 +8,7 @@ import ForwardBackBtns from "./forw-back-btns";
 import Nav from "./nav";
 
 import { getUser } from "@/app/actions";
+import Link from "next/link";
 
 export default async function Header({
   children,
@@ -30,10 +31,14 @@ export default async function Header({
         </div>
         <div className="flex md:hidden gap-x-2 items-center">
           <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition">
-            <HiHome className="text-black" size={20} />
+            <Link href="/">
+              <HiHome className="text-black" size={20} />
+            </Link>
           </button>
           <button className="rounded-full p-2 bg-white flex items-center justify-center hover:opacity-75 transition">
-            <BiSearch className="text-black" size={20} />
+            <Link href="/search">
+              <BiSearch className="text-black" size={20} />
+            </Link>
           </button>
         </div>
         <Nav user={user} />

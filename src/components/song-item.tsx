@@ -18,7 +18,7 @@ export default function SongItem({
   return (
     <div
       className={cn(
-        `relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3 text-white w-[200px]`,
+        `relative group flex flex-col items-center justify-center rounded-md overflow-hidden gap-x-4 bg-neutral-400/5 cursor-pointer hover:bg-neutral-400/10 transition p-3 text-white max-sm:w-[150px] w-[200px]`,
         active && "bg-neutral-400/10"
       )}
     >

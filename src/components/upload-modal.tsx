@@ -13,12 +13,13 @@ import { User } from "@/lib/types";
 import React, { useEffect } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { TbPlaylist } from "react-icons/tb";
-import { toast } from "sonner";
+
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "./ui/button";
-import { succStyles, warnStyles } from "@/lib/utils";
+
+import { toast } from "sonner";
 
 export default function UploadModal() {
   const [user, setUser] = React.useState<User | null>(null);
@@ -45,17 +46,17 @@ export default function UploadModal() {
       await uploadSong(uploadData);
       setOpen(false);
       reset();
-      toast.success("Song uploaded successfully", {
-        className: succStyles,
+      toast.error("Song uploaded successfully", {
+        className: "bg-green-500/15 border-green-400 text-white/80",
       });
     } catch (error) {
       if (error instanceof Error) {
         toast.error(error.message, {
-          className: warnStyles,
+          className: "bg-red-400/15 border-red-500 text-white/80",
         });
       } else {
         toast.error("Something went wrong", {
-          className: warnStyles,
+          className: "bg-red-400/15 border-red-500 text-white/80",
         });
       }
     }
@@ -73,8 +74,8 @@ export default function UploadModal() {
             onClick={(e) => {
               if (!user) {
                 e.preventDefault();
-                toast.warning("Please login to add songs to your library", {
-                  className: warnStyles,
+                return toast.error("You must be logged in to user library", {
+                  className: "bg-red-400/15 border-red-500 text-white/80",
                 });
               }
             }}

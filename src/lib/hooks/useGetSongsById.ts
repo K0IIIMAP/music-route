@@ -24,7 +24,9 @@ const useGetSongById = (id?: number) => {
         setSong(undefined); // Clear the song state on error
 
         setIsLoading(false);
-        return toast.error("Failed to fetch song");
+        toast.error("Failed to fetch songs", {
+          className: "bg-red-400/15 border-red-500 text-white/80",
+        });
       }
       setSong(data);
       setIsLoading(false);

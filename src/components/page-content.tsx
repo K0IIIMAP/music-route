@@ -18,13 +18,15 @@ export default function PageContent({
   if (!songs || songs.length === 0) return;
   return (
     <main className="w-full">
-      <div className="flex  gap-3 w-full">
+      <div className="flex  flex-wrap gap-3 w-full mt-5 max-sm:pb-20 max-sm:justify-center">
         {songs.map((song: Song) => (
           <span
             key={song.id}
             onClick={() => {
               if (!user) {
-                return toast.error("Log in to play songs");
+                return toast.error("You must be logged in to add songs", {
+                  className: "bg-red-400/15 border-red-500 text-white/80",
+                });
               }
               onPlay(song.id);
             }}

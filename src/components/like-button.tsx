@@ -1,9 +1,7 @@
 "use client";
 
-import { getUser } from "@/app/actions";
 import { supabaseClient } from "@/app/utils/supabase/client";
 import { User } from "@/lib/types";
-import { warnStyles } from "@/lib/utils";
 
 import React, { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
@@ -41,8 +39,8 @@ export default function LikeButton({
       className="hover:opacity-75 transition"
       onClick={async () => {
         if (!user) {
-          return toast.error("You must be logged in to like a song", {
-            className: `${warnStyles}`,
+          return toast.error("You must be logged in to like songs", {
+            className: "bg-red-400/15 border-red-500 text-white/80",
           });
         }
         if (liked) {
@@ -53,7 +51,7 @@ export default function LikeButton({
             .eq("song_id", songId);
           if (error) {
             return toast.error("Failed to unlike song", {
-              className: warnStyles,
+              className: "bg-red-400/15 border-red-500 text-white/80",
             });
           }
           setIsLiked(false);
@@ -64,7 +62,7 @@ export default function LikeButton({
             .insert({ user_id: user.id, song_id: songId });
           if (error) {
             return toast.error("Failed to like song", {
-              className: `${warnStyles}`,
+              className: "bg-red-400/15 border-red-500 text-white/80",
             });
           }
           setIsLiked(true);

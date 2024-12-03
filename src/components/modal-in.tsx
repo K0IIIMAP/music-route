@@ -33,10 +33,14 @@ export function ModalIn({
   const onSubmit = async (data: FieldValues) => {
     try {
       await logIn(data);
-      toast.success("Successfull log-in");
+      toast.error("Successful log-in", {
+        className: "bg-green-500/15 border-green-400 text-white/80",
+      });
     } catch (error) {
       if (!(error instanceof Error)) return;
-      toast.error(error.message);
+      toast.error(error.message, {
+        className: "bg-red-400/15 border-red-500 text-white/80",
+      });
     }
   };
   return (

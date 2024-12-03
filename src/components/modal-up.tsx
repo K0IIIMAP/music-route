@@ -35,10 +35,14 @@ export function ModalUp({
   const onSubmit = async (data: FieldValues) => {
     try {
       await signUp(data);
-      toast.success("Check you email for verification link");
+      toast.error("Check your email for verification link", {
+        className: "bg-green-500/15 border-green-400 text-white/80",
+      });
     } catch (error) {
       if (!(error instanceof Error)) return;
-      toast.error(error.message);
+      toast.error(error.message, {
+        className: "bg-red-400/15 border-red-500 text-white/80",
+      });
     }
   };
   return (
