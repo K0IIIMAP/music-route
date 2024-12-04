@@ -26,7 +26,10 @@ export default function Nav({ user }: { user: User | null }) {
             Log Out
           </Button>
 
-          <Link href="/account" className="bg-white p-3 rounded-full">
+          <Link
+            href="https://wa.me/380965360759"
+            className="bg-white p-3 rounded-full"
+          >
             <FaUserAlt className="text-black" />
           </Link>
         </div>
