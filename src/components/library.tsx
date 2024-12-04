@@ -14,7 +14,7 @@ export default function Library({
 }) {
   const onPlay = useOnPlay(songs || []);
   const player = usePlayer();
-  console.log(player.ids);
+  // console.log(player.ids);
   return (
     <div className="flex flex-col">
       <div className="flex items-center justify-between px-5 py-4">

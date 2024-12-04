@@ -28,7 +28,7 @@ export default function PlayerContent({
     forAsync();
   }, []);
   const player = usePlayer();
-  console.log(player.playing);
+  // console.log(player.playing);
 
   const { playing, setIsPlaying } = usePlayer(); // TODO mayber to get back to state
 
